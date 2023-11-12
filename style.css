@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+    font-size: 17px;
+    color: red
+}
+
+.phone {
+    width: 378.5px;
+    height: 754.5px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    margin-left: 40px;
+    margin-top: 25px;
+}
+
+.display {
+    height: 251.5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.display-output {
+    font-size: 70px;
+    display: flex;
+    width: 360px;
+    float: left;
+    position: relative;
+}
+
+.buttons {
+    height: 503px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.button-math {
+    border-radius: 50%;
+}
+
+.button-null {
+    grid-column: span 2;
+    border-radius: 15px;
+}
