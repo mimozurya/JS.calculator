@@ -1,6 +1,7 @@
 const numberButtons = document.querySelectorAll('.button-number');
 const mathButtons = document.querySelectorAll('.button-logic')
 const display = document.querySelector('.display-output');
+const btnEquality = document.querySelector('.button-equality');
 
 numberButtons.forEach(button => {
     const value = button.textContent;
@@ -15,41 +16,75 @@ mathButtons.forEach(mathButton => {
     });
 });
 
-function mathOperator (logic) { // +/-  % / x - + =
+function mathOperator(logic) { // +/-  % / x - + =
     const value = display.value;
 
-    switch(logic) {
-        case 'C':
+    switch (logic) {
+        case 'C': // clean
             display.value = '';
             break;
-        case '+/-':
+        case '+/-': // replace
             replaceSign(value);
             break;
-        case '%': 
+        case '%': // procent
             percentNumber(value);
             break;
-        case '/':
-            // divisionNumbers(value);
+        case '/': // деление
+            divisionNumbers(value);
             break;
-        case 'x':
-            // multiplicationNumbers(value);
+        case 'x': // умножение
+            multiplicationNumbers(value);
             break;
-        case '-':
-            // minusNumbers (value);
+        case '-': // минус
+            minusNumbers(value);
             break;
-        case '+':
-            // plusNumbers (value);
-            break;
-        case '=':
-            // equalityNumber(value);
+        case '+': // плюс
+            plusNumbers(value);
             break;
     }
 }
 
-function replaceSign (value) {
-    return value ? display.value = -value : display.value = value;
+function replaceSign(value) { // replace
+    value ? display.value = -value : display.value = value;
 }
 
-function percentNumber (value) {
-    return display.value = value / 100;
+function percentNumber(value) { // процент
+    display.value = value / 100;
+}
+
+function divisionNumbers(value) { // деление
+    setDisplayPlaceholder(value);
+    btnEquality.onclick = () => {
+        display.value = value / display.value;
+        display.placeholder = '0';
+    }
+}
+
+function multiplicationNumbers(value) { // умножение
+    setDisplayPlaceholder(value);
+    btnEquality.onclick = () => {
+        display.value = value * display.value;
+        display.placeholder = '0';
+    }
+}
+
+function minusNumbers(value) { // минус
+    setDisplayPlaceholder(value);
+    btnEquality.onclick = () => {
+        display.value = value - display.value;
+        display.placeholder = '0';
+    }
+}
+
+function plusNumbers(value) { // плюс
+    setDisplayPlaceholder(value);
+    btnEquality.onclick = () => {
+        display.value = parseFloat(value) + parseFloat(display.value);
+        display.placeholder = '0';
+    }
+}
+
+function setDisplayPlaceholder (value) {
+    display.value = '';
+    display.placeholder = value;
 }
